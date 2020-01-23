@@ -1,9 +1,7 @@
 // isotop
 (function($){
     "use strict";
-
     jQuery(document).ready(function($){
-
         $('li').on('click',function(){
             $('li').removeClass('active');
             $(this).addClass('active');
@@ -12,12 +10,8 @@
                 filter: select
             });
         }) 
-
     })
-
     $('.isotop-active').isotope();
-    
-    
 }(jQuery))
 
 // mixitup
