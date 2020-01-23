@@ -1,0 +1,19 @@
+<script>
+let inputs = document.querySelector('#skill');
+let uls = document.querySelector('.addList')
+let lis = document.getElementsByTagName('li');
+let adds = document.querySelector('#add');
+let oks = document.querySelector('#ok');
+
+adds.addEventListener('click',function(){
+if(inputs.value !=''){
+let p = document.createElement('li')
+p.innerHTML ='<input type="text" multiple  name="skill[]"  class="form-control mt-2" placeholder="add more" >'
+uls.appendChild(p)
+}
+})
+oks.addEventListener('click',function(e){
+    adds.remove()
+    e.target.remove()
+})
+</script> 
