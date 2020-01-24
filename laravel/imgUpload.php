@@ -1,4 +1,7 @@
-<!-- insertion image -->
+<?php
+// Before using Image class, install intervention image laravel
+
+//  insertion image 
 if($request->hasFile('logo')){
     $get_image = $request->file('logo');
     $image = Str::random(10).".".$get_image->getClientOriginalExtension();
@@ -8,7 +11,7 @@ else{
     $image = 'default.png';
 }
 
-<!-- update image -->
+//  update image 
 if( $request->hasFile('logo')){
     $get_image = $request->file('logo'); //orginal image;
     $image = Str::random(5).'.'.$get_image->getClientOriginalExtension(); //to get New(custom) image name
@@ -19,11 +22,13 @@ if( $request->hasFile('logo')){
     }
     }
 else{
-
 $image = 'default.png';
 }
 
-<!-- delete image -->
+//  delete image 
 $delete = Header::findOrFail($id)->logo;
 unlink($delete);
 Header::findOrFail($id)->delete();
+
+
+?>
