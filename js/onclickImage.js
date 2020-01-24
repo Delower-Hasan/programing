@@ -1,0 +1,2 @@
+//  <input type="file" name='logo' onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])"></input>
+onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])"
