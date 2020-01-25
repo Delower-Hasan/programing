@@ -1,5 +1,7 @@
 <?php
-// controller code
+// controller code active/deactive
+
+// active code
 About::where('status',1)->update([
     'status'=>0,
 ]);
@@ -7,9 +9,14 @@ About::where('id',$id)->update([
 'status'=>1,
 ]);
 
+// deactive code
+Service::where('id',$id)->update([
+    'status'=>0,
+]);
 
 // html code using modal
 <td>
+// making deactive
 @if ($service->status==1)
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{$service->id}}">
     Active
@@ -34,7 +41,7 @@ About::where('id',$id)->update([
       </div>
       </div>
   </div>
-{{-- making active --}}
+// making active
 @else
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal{{$service->id}}">
     Deactive

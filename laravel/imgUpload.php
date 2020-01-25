@@ -11,6 +11,7 @@ else{
     $image = 'default.png';
 }
 
+
 //  update image 
 if( $request->hasFile('logo')){
     $get_image = $request->file('logo'); //orginal image;
@@ -24,6 +25,7 @@ if( $request->hasFile('logo')){
 else{
 $image = 'default.png';
 }
+
 
 //  delete image 
 $delete = Header::findOrFail($id)->logo;
