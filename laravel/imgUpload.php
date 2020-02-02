@@ -13,17 +13,32 @@ else{
 
 
 //  update image 
-if( $request->hasFile('logo')){
-    $get_image = $request->file('logo'); //orginal image;
-    $image = Str::random(5).'.'.$get_image->getClientOriginalExtension(); //to get New(custom) image name
-    Image::make($get_image)->resize(300, 200)->save(public_path('/backend/upload_image/'.$image));
-    if($request->file("logo")){
-        $new_image = Header::findOrFail($id)->logo;
-        unlink($new_image);
-    }
-    }
+$icon =Service::where('id',$id)->first();
+$service_icon =$icon->icon;
+if( $request->hasFile('icon')){
+ $get_image = $request->file('icon'); //orginal image;
+ $image = Str::random(5).'.'.$get_image->getClientOriginalExtension(); //to get New(custom) image name
+ Image::make($get_image)->resize(300, 200)->save(public_path('/backend/upload_image/'.$image));
+if(file_exists($service_icon)){
+   unlink($service_icon);
+}
+    Service::findOrFail($id)->update([
+    "title"=>$request->title,
+    "subtitle"=>$request->subtitle,
+    "icon"=>"backend/upload_image/".$image,
+    "icon_title"=>$request->icon_title,
+    "icon_subtitle"=>$request->icon_subtitle,
+    "status"=>$request->status,
+    ]);
+}
 else{
-$image = 'default.png';
+    Service::findOrFail($id)->update([
+        "title"=>$request->title,
+        "subtitle"=>$request->subtitle,
+        "icon_title"=>$request->icon_title,
+        "icon_subtitle"=>$request->icon_subtitle,
+        "status"=>$request->status,
+        ]);
 }
 
 
