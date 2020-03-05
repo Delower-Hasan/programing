@@ -48,4 +48,22 @@ unlink($delete);
 Header::findOrFail($id)->delete();
 
 
+// multiple Image insert
+if($request->hasFile('banner_image')){
+    $get_image = $request->file('banner_image');
+    $imgArry = [];
+    foreach($get_image as $images){
+        $image = Str::random(10).".".$images->getClientOriginalExtension();
+        Image::make($images)->resize(724,724)->save(public_path('/backend/banner_images/'.$image));
+        array_push($imgArry,"backend/upload_image/".$image);
+    }
+        BannerModel::insert([
+        "banner_image"=>json_encode($imgArry),
+        "banner_title"=>$request->banner_title,
+        "created_at"=>Carbon::now(),
+        ]);
+
+}
+
+
 ?>
