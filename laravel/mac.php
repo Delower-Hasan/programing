@@ -1,5 +1,9 @@
 <?php
 
+// Before using this code
+
+// Type This: on your command line: ipconfig /all
+
 // PHP code to get the MAC address of Client 
 $MAC = exec('getmac'); 
             
