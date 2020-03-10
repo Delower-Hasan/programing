@@ -123,7 +123,7 @@ $('#headerForm_edit').submit(function(e){
             $('#required').html(response);
             getRecords()
             warningOut()
-            window.history.back();
+            
           }
         })
       })
