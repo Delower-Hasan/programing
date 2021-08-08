@@ -1,4 +1,4 @@
-Jquery-2
+// Jquery-2
 
 /*CSS*/
 /* back to top btn */
@@ -22,7 +22,7 @@ Jquery-2
 
 
 
-Back to top
+// Back to top
 
 $(function(){
 // sticky menu
@@ -69,17 +69,17 @@ html_body.animate({scrollTop:0},1000);
 });
 
 
-Jquery-3
-LightBox (similar to magnific popup)
-venobox (similar to magnific popup)
+// Jquery-3
+// LightBox (similar to magnific popup)
+// venobox (similar to magnific popup)
 
 
 
-Jquery-4
-/%Isotop
-Preloader
-Counterup
-Countdown */
+// Jquery-4
+// /%Isotop
+// Preloader
+// Counterup
+// Countdown */
 
 
 $(function(){
@@ -119,14 +119,14 @@ $('.button-group').each( function( i, buttonGroup ) {
     
 });
 
-Preloader
+// Preloader
 
 $(function(){
     $(window).on('load', function(){
         $("#preloader").delay(500).fadeOut(500);
     });
 
-counterUp
+// counterUp
     
     $('.counter').counterUp({
     delay: 10,
@@ -135,13 +135,13 @@ counterUp
 });
 
 
-jQuery-5
-YT-player
-TypeJs
-particles
+// jQuery-5
+// YT-player
+// TypeJs
+// particles
 
 
-YT Player
+// YT Player
 
 //video bg
 jQuery(function(){
