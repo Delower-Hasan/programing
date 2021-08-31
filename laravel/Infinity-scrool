@@ -1,0 +1,55 @@
+//Route
+Route::get('/', 'Front\Homepage@index')->name('homepage');
+
+// Controller
+    public function index(Request $request){
+      $paginate = Setting::findOrFail(1)->paginate_num;
+      $catagories = Category::all();
+      $deals = Deal::orderBy('id', 'DESC')->where('status', 1)->paginate(5);
+      if($request->ajax()){
+        $views = view('front.widgets.deals',compact('deals','catagories'))->render();
+        return response()->json(['html'=>$views]);
+      }
+        return view('front.index', compact('deals','catagories'));
+    }
+    
+ //Ajax call
+   // Loading starts
+            function LoadMoreDeals(page){
+              $.ajax({
+                url: "?page="+page,
+                type: "get",
+                beforeSend:function(){
+                  $('.loading-deals').show()
+                }
+              })
+              .done(function(data){
+                if(data.html == ""){
+                    $('.loading-deals').html("No More Record Found");
+                    return;
+                }
+                $('.loading-deals').hide();
+                $('#deals-data').append(data.html)
+              })
+              .fail(function(jqXHR,ajaxOptions,thrownError){
+                alert('Server Not Responding....')
+              })
+            }
+
+            var page = 1
+            $(window).scroll(function(){
+              if($(window).scrollTop() + $(window).height() >= $(document).height()){
+                page++;
+                LoadMoreDeals(page)
+              }
+            })
+            // Loading ends
+            
+            
+    //HTML
+      <section class="deal-section" id="deals-data">
+            @include('front.widgets.deals')
+        </section>
+        <div class="loading-deals" style="display:none">
+          <p> <img src="{{asset('front')}}/img/loading.gif" alt=""> Loadding....</p>
+        </div>
