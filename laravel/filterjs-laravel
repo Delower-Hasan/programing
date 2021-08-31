@@ -1,0 +1,57 @@
+// Filter js starts
+
+              $('.js-check-all').change(function(){
+                var hideExp = $('.js-option')[0].value;
+                  var hideFree = $('.js-option')[1].value;
+                    var hideAdult = $('.js-option')[2].value;
+
+                 if($(this).prop("checked")==true){
+                   var allLocation = "{{url('/filter')}}/" + hideExp+'/'+ hideFree+'/'+ hideAdult;
+                   location.href =allLocation
+                 }
+              })
+
+
+            $('.js-option').change(function(){
+
+
+              if($('.js-option').prop("checked")==true){
+                var itemValue = this.value;
+                var hideExp = $('.js-option')[0].value;
+                var hideFree = $('.js-option')[1].value;
+                var hideAdult = $('.js-option')[2].value;
+
+
+                if($('.flt1').prop("checked")==true && $('.flt2').prop("checked")==true){
+
+                  var allLocation = "{{url('/filter')}}/" + hideExp+'/'+ hideFree
+                  location.href =allLocation
+                }
+                else if($('.flt1').prop("checked")==true && $('.flt3').prop("checked")==true){
+                     var allLocation = "{{url('/filter')}}/" + hideExp+'/'+ hideAdult;
+                  location.href =allLocation
+                }
+                else if ($('.flt2').prop("checked")==true && $('.flt3').prop("checked")==true) {
+                  var allLocation = "{{url('/filter')}}/" + hideFree+'/'+ hideAdult;
+                  location.href =allLocation
+                }
+                else if ( $('.flt1').prop("checked")==true && $('.flt2').prop("checked")==true && $('.flt3').prop("checked")==true) {
+                  var allLocation = "{{url('/filter')}}/" + hideExp+'/'+ hideFree+'/'+ hideAdult;
+                  location.href =allLocation
+                }
+                else{
+                  if($(this).prop("checked")==true){
+                    location.href = "{{url('/filter')}}/"+ itemValue
+                  }else{
+                    location.href = "{{url('/filter')}}/"+ itemValue
+                  }
+                }
+              }else{
+                location.href = "{{url('/')}}"
+              }
+
+
+            })
+
+
+            // Filter js ends
