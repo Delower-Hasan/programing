@@ -1,6 +1,7 @@
 <?php
 // Before using Image class, install intervention image laravel
 
+
 //  insertion image 
 if($request->hasFile('logo')){
     $get_image = $request->file('logo');
@@ -65,5 +66,15 @@ if($request->hasFile('banner_image')){
 
 }
 
+
+// If you want to use raw code without any package then use it.
+  if($request->hasFile('store_logo')){
+              $request->validate([
+                  'image'      => ['required','image','mimes:jpeg,png,jpg,gif,svg','max:1000']
+              ]);
+              $imageName = time().'-'.uniqid().'.'.$request->image->getClientOriginalExtension();
+              $request->image->move(public_path('/uploads/store'), $imageName);
+              $store->store_logo = $imageName;
+          }
 
 ?>
