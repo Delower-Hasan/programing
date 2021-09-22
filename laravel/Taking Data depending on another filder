@@ -1,0 +1,13 @@
+  public function commentsDeal(Request $request){
+      $paginate = Setting::findOrFail(1)->paginate_num;
+      $date = date('Y-m-d', time());
+      $commentsDeals = Comment::where('status',1)->where('created_at', 'LIKE', '%'.$date.'%')->orderBy('created_at','ASC')->get();
+      $deals = collect();
+      $ids = [];
+      foreach ($commentsDeals as $deal) {
+        $ids[] = $deal['deal_id'];
+      }
+      $deals = Deal::whereIn('id',  $ids)->paginate($paginate);
+      $request->session()->forget('commentedDeals');
+      return view('front.index', compact('deals'));
+    }
